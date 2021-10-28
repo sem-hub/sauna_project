@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+                <meta content="utf-8" http-equiv="encoding">
+		<title>Баня</title>
+<style>
+html {
+	display: table;
+	margin: auto;
+}
+
+body {
+	background-image: url(wood-background.jpg);
+	display: table-cell;
+	vertical-align: middle;
+	height: 360px;
+}
+.internal {
+	height: 65%;
+	width: 500px;
+	background-color: #363433;
+	border-radius: 45px;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	display: block;
+	float: left;
+	margin: 20px;
+}
+.header {
+	color: #ffffff;
+	font-size: 40px;
+	font-family: Helvetica;
+	height: 20%;
+	padding-left: 35px;
+	padding-top: 10px;
+}
+.values {
+	position: relative;
+	color: #e4ac0a;
+	font-size: 80px;
+	font-family: Helvetica;
+	padding-top: 60px;
+	padding-left: 35px;
+        padding-right: 35px;
+	display: block;
+	float: left;
+}
+</style>
+<script type="text/javascript">
+    var int = self.setInterval(update, 5000);
+    function loadData(dataPath) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", dataPath);
+        xhr.onload = function(e) {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                const DataArr = xhr.responseText.split(" ")
+                document.getElementById("steam_temp").firstChild.data = DataArr[0]
+                document.getElementById("rest_temp").firstChild.data = DataArr[1]
+                document.getElementById("rest_humid").firstChild.data = DataArr[2]
+            }
+        };
+        xhr.send(null);
+    }
+    function update() {
+        loadData("/data");
+    }
+</script>
+</head>
+<body onload="update();">
+        <div class="internal">
+                <div class="header">Парная</div>
+                <div class="values" id="steam_temp">
+                        0.0°
+                </div>
+        </div>
+        <div class="internal">
+                <div class="header">Комната отдыха</div>
+                <div class="values" id="rest_temp">
+                        0.0°
+                </div>
+                <div class="values" id="rest_humid">
+                        0%
+                </div>
+        </div>
+</body>
+</html>
