@@ -20,4 +20,6 @@ to generate a self-signed sertificate (www/server.pem) for it.
 
 ## Requirements
 It uses rpyc python module for communication:
+```
 pip install rpyc
+```
