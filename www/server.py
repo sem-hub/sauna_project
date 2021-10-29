@@ -55,7 +55,7 @@ class WebHandler(BaseHTTPRequestHandler):
             self.wfile.write(b'</body></html>')
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO, filename='out.txt')
+    logging.basicConfig(level=logging.INFO, filename='/var/log/sauna_web.log')
     try:
         httpd = HTTPServer(("", 443), WebHandler)
         httpd.socket = ssl.wrap_socket(httpd.socket,
