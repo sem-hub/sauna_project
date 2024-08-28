@@ -138,9 +138,9 @@ def show_value(disp, val: float, kind: str) -> None:
     s = str(my_round(val))
     out = []
     if kind == 'T1':
-        out.append(' ')
+        out.append('PE')
     elif kind == 'T2':
-        out.append('A')
+        out.append(' ')
     else:
         out.append(' ')
 
@@ -186,10 +186,13 @@ def main():
             blink.stop()
 
             if stor.is_steam_valid():
-                show_value(display, stor.get_steam_temp(), 'T1')
+                # Show steam temp only if >35 degrees
+                if stor.get_steam_temp() > 35:
+                    show_value(display, stor.get_steam_temp(), 'T1')
+                    time.sleep(3)
             else:
                 show_error(display)
-            time.sleep(3)
+                time.sleep(3)
 
             if stor.is_rest_valid():
                 show_value(display, stor.get_rest_temp(), 'T2')

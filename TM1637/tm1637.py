@@ -41,6 +41,7 @@ HEXLETTERS = {
     'W1': 0x3c,
     'W2': 0x1e,
     'GR': 0x63,
+    'PE' : 0x37,
 }
 
 ADDR_AUTO = 0x40
